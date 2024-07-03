@@ -26,6 +26,9 @@ $app = new Laravel\Lumen\Application(
 // $app->withFacades();
 
 // $app->withEloquent();
+$app->withFacades(); 
+$app->withEloquent();
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -47,15 +50,6 @@ $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
     App\Console\Kernel::class
 );
-
-$app->withFacades(); 
-$app->withEloquent();
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
-
-$app->routeMiddleware([
-    'auth' => App\Http\Middleware\Authenticate::class,
-]);
-$app->register(App\Providers\AuthServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -88,7 +82,9 @@ $app->configure('app');
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
-
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -101,8 +97,9 @@ $app->configure('app');
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+//$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -114,6 +111,10 @@ $app->configure('app');
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
+
+
+
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
