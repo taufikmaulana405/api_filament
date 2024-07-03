@@ -27,14 +27,26 @@ $router->group(['prefix' => 'api/v1/user','middleware'=>'auth'], function() use 
 
 $router->group(['prefix' => 'api/v1/costumer','middleware'=>'auth'], function() use ($router){
     $router->get('/', ['uses' => 'CostumerController@index']);
+    $router->post('/', ['uses' => 'CostumerController@store']);
+    $router->get('/{id}', ['uses' => 'CostumerController@show']);
+    $router->put('/{id}', ['uses' => 'CostumerController@edit']);
+    $router->delete('/{id}', ['uses' => 'CostumerController@destroy']);
 });
 
 $router->group(['prefix' => 'api/v1/product','middleware'=>'auth'], function() use ($router){
     $router->get('/', ['uses' => 'ProductController@index']);
+    $router->post('/', ['uses' => 'ProductController@store']);
+    $router->get('/{id}', ['uses' => 'ProductController@show']);
+    $router->put('/{id}', ['uses' => 'ProductController@edit']);
+    $router->delete('/{id}', ['uses' => 'ProductController@destroy']);
 });
 
 $router->group(['prefix' => 'api/v1/order','middleware'=>'auth'], function() use ($router){
     $router->get('/', ['uses' => 'OrderController@index']);
+    $router->post('/', ['uses' => 'OrderController@store']);
+    $router->get('/{id}', ['uses' => 'OrderController@show']);
+    $router->put('/{id}', ['uses' => 'OrderController@edit']);
+    $router->delete('/{id}', ['uses' => 'OrderController@destroy']);
 });
 
 // $router->group(['prefix' => 'api/v1/product','middleware'=>'auth'], function() use ($router){
